@@ -46,14 +46,14 @@ function DownDetector() {
         const response = await fetch("https://63410.wayscript.io/");
         const json:ApiResponse = await response.json();
         console.log(json)
-        setDownStatus([{key:'1',cp:"Merryl",status:json.Merryl,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/e0ecf/Disney_logo_2.png"},
-        {key:'1',cp:"Disney+",status:json.Disney,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/e0ecf/Disney_logo_2.png"},
-        {key:'1',cp:"Steam",status:json.Steam,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/07eb1/Steam-Logo.png"},
-        {key:'1',cp:"Verizon",status:json.Verizon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/2e248/verizon-logo.png"},
-        {key:'1',cp:"Amazon",status:json.Amazon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/7d4a1/Amazon_Prime_Video_logo.png"},
-        {key:'1',cp:"DailyMotion",status:json.DailyMotion,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/d05b0/Dailymotion_logo.png"},
-        {key:'1',cp:"BT",status:json.BT,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/5f3af/image3.png"},
-        {key:'1',cp:"Mediacom",status:json.Mediacom,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/76b00/Mediacom_Communications.png"},
+        setDownStatus([
+        {key:'Disney+',cp:"Disney+",status:json.Disney,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/e0ecf/Disney_logo_2.png"},
+        {key:'Steam',cp:"Steam",status:json.Steam,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/07eb1/Steam-Logo.png"},
+        {key:'Verizon',cp:"Verizon",status:json.Verizon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/2e248/verizon-logo.png"},
+        {key:'Amazon',cp:"Amazon",status:json.Amazon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/7d4a1/Amazon_Prime_Video_logo.png"},
+        {key:'DailyMotion',cp:"DailyMotion",status:json.DailyMotion,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/d05b0/Dailymotion_logo.png"},
+        {key:'BT',cp:"BT",status:json.BT,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/5f3af/image3.png"},
+        {key:'Mediacom',cp:"Mediacom",status:json.Mediacom,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/76b00/Mediacom_Communications.png"},
     ]);
     setLoading(false);
     }
