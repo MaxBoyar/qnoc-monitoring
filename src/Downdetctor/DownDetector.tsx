@@ -4,6 +4,7 @@ import { Table } from "antd";
 import 'antd/dist/antd.css'
 import { Badge } from 'antd';
 import { Spin } from 'antd';
+import {BarChartOutlined } from '@ant-design/icons';
 
 const DownDetectorStyled = styled.div`
  // padding: 1rem 3rem;
@@ -37,6 +38,7 @@ interface DataFromApi{
     cp: string;
     status: string;
     imgLink:string
+    downLink:string;
 }
 function DownDetector() {
     const [downStatus,setDownStatus] = useState<DataFromApi[]>();
@@ -47,13 +49,13 @@ function DownDetector() {
         const json:ApiResponse = await response.json();
         console.log(json)
         setDownStatus([
-        {key:'Disney+',cp:"Disney+",status:json.Disney,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/e0ecf/Disney_logo_2.png"},
-        {key:'Steam',cp:"Steam",status:json.Steam,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/07eb1/Steam-Logo.png"},
-        {key:'Verizon',cp:"Verizon",status:json.Verizon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/2e248/verizon-logo.png"},
-        {key:'Amazon',cp:"Amazon",status:json.Amazon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/7d4a1/Amazon_Prime_Video_logo.png"},
-        {key:'DailyMotion',cp:"DailyMotion",status:json.DailyMotion,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/d05b0/Dailymotion_logo.png"},
-        {key:'BT',cp:"BT",status:json.BT,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/5f3af/image3.png"},
-        {key:'Mediacom',cp:"Mediacom",status:json.Mediacom,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/76b00/Mediacom_Communications.png"},
+        {key:'Disney+',cp:"Disney+",status:json.Disney,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/e0ecf/Disney_logo_2.png",downLink:"https://downdetector.com/status/disney-plus/"},
+        {key:'Steam',cp:"Steam",status:json.Steam,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/07eb1/Steam-Logo.png",downLink:"https://downdetector.com/status/steam/"},
+        {key:'Verizon',cp:"Verizon",status:json.Verizon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/2e248/verizon-logo.png",downLink:"https://downdetector.com/status/verizon/"},
+        {key:'Amazon',cp:"Amazon",status:json.Amazon,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/7d4a1/Amazon_Prime_Video_logo.png",downLink:"https://downdetector.com/status/amazon-prime-instant-video/"},
+        {key:'DailyMotion',cp:"DailyMotion",status:json.DailyMotion,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/d05b0/Dailymotion_logo.png",downLink:"https://downdetector.com/status/dailymotion/"},
+        {key:'BT',cp:"BT",status:json.BT,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/5f3af/image3.png",downLink:"https://downdetector.com/status/bt-british-telecom/"},
+        {key:'Mediacom',cp:"Mediacom",status:json.Mediacom,imgLink:"https://cdn2.downdetector.com/static/uploads/c/300/76b00/Mediacom_Communications.png",downLink:"https://downdetector.com/status/mediacom-communications/"},
     ]);
     setLoading(false);
     }
@@ -96,6 +98,12 @@ function DownDetector() {
                 }
             }
   
+          },
+          {
+            title: 'Link',
+            dataIndex: 'downLink',
+            key: 'downLink',
+            render: (text:string, record:DataFromApi) => <a href={text} target="_blank" ><BarChartOutlined /></a>
           },
          
       ];

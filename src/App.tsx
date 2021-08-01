@@ -9,6 +9,7 @@ const AppView = styled.div`
   margin-right: auto;
   margin-left: auto;
   
+  
 `;
 
 const Center = styled.div`
@@ -20,11 +21,20 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
+  
 `;
 
 const MyRow = styled.div`
   display: flex;
   flex-direction: row;
+  
+`;
+
+const MainView = styled.div`
+  
+  border:1px rgba(220, 213, 213,0.3) solid;
+  margin:3vh;
+  padding: 4vh;
   
 `;
 
@@ -41,10 +51,13 @@ function App() {
       </Center>
     
       <Center>
-      <MyRow>
-        <DownDetector></DownDetector>
-        <Forums></Forums>
-      </MyRow>
+      <MainView>
+        <MyRow>
+          <DownDetector></DownDetector>
+          <Forums></Forums>
+        </MyRow>
+      </MainView>
+    
       </Center>
    
      
