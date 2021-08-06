@@ -32,21 +32,22 @@ interface TableData{
 }
 
 interface Props{
-    company:string;
+    company?:string;
+    data:TableData[];
 }
 function HistoryDownDetector(props:Props) {
-     const [forumsStatus,setForumsStatus] = useState<TableData[]>();
+     //const [forumsStatus,setForumsStatus] = useState<TableData[]>();
     
-    const fetchApi=async()=>{
+    // const fetchApi=async()=>{
         
-        const response = await fetch("https://64170.wayscript.io/?text="+props.company);
-        const json:ApiResponse[] = await response.json();
-        setForumsStatus(json)
-    }
+    //     const response = await fetch("https://64170.wayscript.io/?text="+props.company);
+    //     const json:ApiResponse[] = await response.json();
+    //     setForumsStatus(json)
+    // }
 
-    useEffect(()=>{
-       fetchApi(); 
-    },[]);
+    // useEffect(()=>{
+    //    fetchApi(); 
+    // },[]);
 
       
       const columns = [
@@ -73,7 +74,7 @@ function HistoryDownDetector(props:Props) {
 
   return (
     <DownDetectorStyled>
-        {forumsStatus?<Table dataSource={forumsStatus} columns={columns} pagination={false} />:null}
+        {props.data?<Table dataSource={props.data} columns={columns} pagination={false} />:null}
     </DownDetectorStyled>
   );
 }
