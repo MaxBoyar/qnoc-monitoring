@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import DownDetector from "./Downdetctor/DownDetector";
 import Forums from "./Forums/Forums";
+import HistoryDownDetector from "./historyDownDetector/HistoryDownDetector";
 
 const AppView = styled.div`
    padding-right: 15px;
