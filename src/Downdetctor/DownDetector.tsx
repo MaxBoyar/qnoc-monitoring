@@ -64,7 +64,7 @@ function DownDetector() {
 
     const fetchApi=async()=>{
         //const response = await fetch("https://63410.wayscript.io/");
-        const response = await fetch("http://downdetector-service-api.herokuapp.com/");
+        const response = await fetch("https://downdetector-service-api.herokuapp.com/");
         const json:ApiResponse = await response.json();
         console.log(json)
         const history = await fetchHistory();
