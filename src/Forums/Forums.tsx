@@ -42,21 +42,49 @@ interface TableData{
 function Forums() {
     const [forumsStatus,setForumsStatus] = useState<TableData[]>();
     const [loading,setLoading] =useState(true);
+
+    const fetchWithTimeout= async (link:string, time:number)=>{      
+      const controller = new AbortController();
+
+      const id = setTimeout(() => controller.abort(), time);
     
+      const response = await fetch(link, {
+        signal: controller.signal  
+      });
+      clearTimeout(id);
+    
+      return response;
+    }
+
     const fetchApi=async()=>{
-        const response = await fetch("https://63445.wayscript.io/");
-        const json:ApiResponse = await response.json();
-        console.log(json)
-        setForumsStatus([
-            {key:"SteamCqloud",name:"Steam",word:"cqloud",status:json.SteamCqloud,downLink:"https://steamcommunity.com/discussions/forum/search/?q=cqloud&sort=time"},
-            {key:"VerizonSteam",name:"Verizon",word:"steam",status:json.VerizonSteam,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=steam&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
-            {key:"VerizonDM",name:"Verizon",word:"Dailymotion",status:json.VerizonDailymotion,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Dailymotion&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
-            {key:"VerizonSony",name:"Verizon",word:"sony",status:json.VerizonSony,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Sony&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
-            {key:"VerizonXbox",name:"Verizon",word:"xbox",status:json.VerizonXbox,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=xbox&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
-            {key:"VerizonCqloud",name:"Verizon",word:"cqloud",status:json.VerizonCloud,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?sort_by=-topicPostDate&collapse_discussion=true&q=cqloud&noSynonym=false&inactive=false&q=cqloud&nospellcheck=true"},
-            {key:"VerizonDisney",name:"Verizon",word:"disney",status:json.VerizonDisney,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Disney%2B&noSynonym=false&nospellcheck=true&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
-        ])
+      try{
+        const response = await fetchWithTimeout("https://63445.wayscript.io/",10000)
+        if (!response.ok) {
+          // make the promise be rejected if we didn't get a 2xx response
+          throw new Error("Not 2xx response")
+        } else {
+            // go the desired response
+            const json:ApiResponse = await response.json();
+            console.log(json)
+            setForumsStatus([
+                {key:"SteamCqloud",name:"Steam",word:"cqloud",status:json.SteamCqloud,downLink:"https://steamcommunity.com/discussions/forum/search/?q=cqloud&sort=time"},
+                {key:"VerizonSteam",name:"Verizon",word:"steam",status:json.VerizonSteam,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=steam&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
+                {key:"VerizonDM",name:"Verizon",word:"Dailymotion",status:json.VerizonDailymotion,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Dailymotion&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
+                {key:"VerizonSony",name:"Verizon",word:"sony",status:json.VerizonSony,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Sony&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
+                {key:"VerizonXbox",name:"Verizon",word:"xbox",status:json.VerizonXbox,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=xbox&noSynonym=false&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
+                {key:"VerizonCqloud",name:"Verizon",word:"cqloud",status:json.VerizonCloud,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?sort_by=-topicPostDate&collapse_discussion=true&q=cqloud&noSynonym=false&inactive=false&q=cqloud&nospellcheck=true"},
+                {key:"VerizonDisney",name:"Verizon",word:"disney",status:json.VerizonDisney,downLink:"https://forums.verizon.com/t5/forums/searchpage/tab/message?q=Disney%2B&noSynonym=false&nospellcheck=true&inactive=false&sort_by=-topicPostDate&collapse_discussion=true"},
+            ])
+            setLoading(false);
+        } 
+      }
+      catch(err)
+      {
+        console.log(err)
         setLoading(false);
+
+      }
+        
     }
 
     useEffect(()=>{

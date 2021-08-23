@@ -55,7 +55,7 @@ function DownDetector() {
     const [loading,setLoading] =useState(true);
     
     const fetchHistory=async()=>{
-      const urlBase="https://64170.wayscript.io/?text="
+      const urlBase="https://dd-api-maximus.herokuapp.com/hello?client="
       const companies=["verizon","steam","dailymotion","amazon-prime-instant-video","disney-plus","bt-british-telecom","mediacom-communications"]
       const response = await Promise.all(companies.map(company=>fetch(urlBase+company).then(res=>res.json())))
       return response;
@@ -64,7 +64,7 @@ function DownDetector() {
 
     const fetchApi=async()=>{
         //const response = await fetch("https://63410.wayscript.io/");
-        const response = await fetch("https://downdetector-service-api.herokuapp.com/");
+        const response = await fetch("https://dd-api-maximus.herokuapp.com/");
         const json:ApiResponse = await response.json();
         console.log(json)
         const history = await fetchHistory();
