@@ -55,7 +55,7 @@ function DownDetector() {
     const [loading,setLoading] =useState(true);
     
     const fetchHistory=async()=>{
-      const urlBase="https://dd-api-maximus.herokuapp.com/hello?client="
+      const urlBase="https://dd-api-maximus.herokuapp.com/history?client="
       const companies=["verizon","steam","dailymotion","amazon-prime-instant-video","disney-plus","bt-british-telecom","mediacom-communications"]
       const response = await Promise.all(companies.map(company=>fetch(urlBase+company).then(res=>res.json())))
       return response;

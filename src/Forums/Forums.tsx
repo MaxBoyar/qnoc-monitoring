@@ -58,7 +58,7 @@ function Forums() {
 
     const fetchApi=async()=>{
       try{
-        const response = await fetchWithTimeout("https://63445.wayscript.io/",10000)
+        const response = await fetchWithTimeout("http://dd-api-maximus.herokuapp.com/forums",15000)
         if (!response.ok) {
           // make the promise be rejected if we didn't get a 2xx response
           throw new Error("Not 2xx response")
