@@ -9,8 +9,6 @@ const AppView = styled.div`
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  
-  
 `;
 
 const Center = styled.div`
@@ -54,7 +52,7 @@ function App() {
       <Center>
       <MainView>
         <MyRow>
-          <DownDetector></DownDetector>
+          {/* <DownDetector></DownDetector> */}
           <Forums></Forums>
         </MyRow>
       </MainView>
